@@ -34,15 +34,17 @@ class _PriceRangeFilterState extends State<PriceRangeFilter> {
     final minPrice = _currentRange.start.round();
     final maxPrice = _currentRange.end.round();
 
+    final isMaxAtLimit = maxPrice >= 300;
+    final rangeLabel = isMaxAtLimit
+        ? 'US\$$minPrice - US\$$maxPrice+'
+        : 'US\$$minPrice - US\$$maxPrice';
+        
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Text(
-            'US\$${minPrice.round()} - US\$${maxPrice.round()}+',
-            style: MyTextStyles.poppins16W400,
-          ),
+          child: Text(rangeLabel, style: MyTextStyles.poppins16W400),
         ),
         SizedBox(
           height: 150,
@@ -83,4 +85,3 @@ class _PriceRangeFilterState extends State<PriceRangeFilter> {
     );
   }
 }
-
